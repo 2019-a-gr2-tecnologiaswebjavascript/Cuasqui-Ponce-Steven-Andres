@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { CarritoService } from '../servicios/carrito/carrito.service';
 import { notStrictEqual } from 'assert';
+import { stringify } from '@angular/compiler/src/util';
+import { ItemCarritoCompras } from '../interfaces/item-carrito-compras';
 
 @Component({
   selector: 'app-item-galeria',
@@ -42,11 +44,12 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
     console.log('Termino');
   }
 
-  agregarCarrito(valorCarrito){
+  agregarCarrito(valorCarrito:string){
 
-    const itemCarrito = {
+    const itemCarrito:ItemCarritoCompras = {
       valor: valorCarrito,
-      nombreTienda: this.titulo
+      nombreTienda: this.titulo,
+      fechaCompra: new Date()
     };
     //this._carritoService.carritoCompras.push(valorCarrito)
     this._carritoService.carritoCompras.splice(0,0,itemCarrito)
@@ -79,6 +82,14 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
 
 }
 
+
+/*
+class CarritoCompraClass implements CarritoComprasInterface{
+  valor:string;
+  nombreTienda:string;
+  fechaCompra?: Date
+  fechaCompra?:Date
+}*/
 /*
 @DecoratorsClase() 
 class Usuario{
