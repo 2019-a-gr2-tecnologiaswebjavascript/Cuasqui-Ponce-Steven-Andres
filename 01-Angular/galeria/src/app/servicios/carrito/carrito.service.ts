@@ -9,14 +9,19 @@ export class CarritoService{
     agregarCarritoDeCompras(itemCarrito:ItemCarritoCompras):ItemCarritoCompras[]{
         const identificador = itemCarrito.valor;
         let indiceItem = -1;
+        const nombreTienda = itemCarrito.nombreTienda;
+        console.log(nombreTienda)
+
         const existeElItem = this.carritoCompras.some(
             (item:ItemCarritoCompras, indice)=>{
+                if(item.nombreTienda == nombreTienda){
                 if(item.valor == identificador){
                     indiceItem = indice
                     return true
                 }else{
                     return false
                 }
+            }
             }
         )
 
